@@ -38,4 +38,34 @@ public class StudenteServiceImpl implements StudenteService {
     public List<Studente> getAll() {
         return studenti; // Ritorna semplicemente la lista popolata nel costruttore
     }
+
+    @Override
+    public String create(Studente studente) {
+
+        String msg = "";
+        boolean studenteTrovato = false;
+
+        if(studente != null) {
+
+            for (Studente studenteLista : studenti) {
+                if(studente.getId() == studenteLista.getID()) {
+                    msg = "Impossibile registrare due studenti identici";
+                    studenteTrovato = true;
+                    break;
+                }
+            }
+
+            if (!studenteTrovato) {
+                if (studente.getNome() != null && studente.getCorso() != null && studente.getId() > 0) {
+                    studenti.add(studente);
+                    msg = "Studente registrato con successo";
+                }
+            }
+
+        } else {
+            msg = "Impossibile salvare uno studente non valorizzato";
+        } return msg;
+
+    }
+
 }

@@ -45,4 +45,8 @@ public class Studente {
     public void setCorso(String corso) {
         this.corso = corso;
     }
+
+    public int getID() {
+        return id;
+    }
 }
